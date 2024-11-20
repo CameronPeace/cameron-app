@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
 export interface IUser {
+    id: number;
     name: string;
     age: number;
 }
-const App = () => {
-    const [users, setUsers] = useState<IUser[]>([
+export const App = () => {
+    const [users, setUsers] = useState <IUser[]>([
         {
+            id: 1,
             name: "Bijaya",
             age: 25,
         },
         {
+            id: 2,
             name: "Ram",
             age: 25,
         },
@@ -22,7 +25,7 @@ const App = () => {
             <ul>
                 {users.map((user: IUser) => {
                     return (
-                        <li>
+                        <li key={user.id}>
                             {user.name} is {user.age} years old
                         </li>
                     );
@@ -31,5 +34,3 @@ const App = () => {
         </div>
     );
 };
-
-export default App;
