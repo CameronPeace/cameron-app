@@ -8,7 +8,7 @@ import PrimaryButton from "./PrimaryButton";
 import TextInput from "./TextInput";
 import api from "../utils/theaterApi";
 
-export const Theater = () => {
+export const TheaterData = () => {
     const isFirstRender = useRef(true);
     const [startDate, setStartDate] = useState(Moment().utc().format('YYYY-MM-DD 00:00:00'));
     const [endDate, setEndDate] = useState(Moment().utc().format('YYYY-MM-DD 23:59:59'));
