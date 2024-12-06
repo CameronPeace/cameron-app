@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\KeapService;
 use App\Services\ApiService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -26,8 +25,6 @@ class ApiController extends Controller
 
            $topTheaters = $apiService->getTopTheaters($validated['fromDate'], $validated['toDate'], $validated['queryLimit']);
 
-            $keapService = new KeapService();
-            $keapService->getContacts(); 
             return response()->json(['data' => $topTheaters], 200);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->getMessage()], 400);
