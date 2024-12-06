@@ -8,7 +8,7 @@ import PrimaryButton from "./PrimaryButton";
 import TextInput from "./TextInput";
 import api from "../utils/theaterApi";
 
-export const Theater = () => {
+export const TheaterData = () => {
     const isFirstRender = useRef(true);
     const [startDate, setStartDate] = useState(Moment().utc().format('YYYY-MM-DD 00:00:00'));
     const [endDate, setEndDate] = useState(Moment().utc().format('YYYY-MM-DD 23:59:59'));
@@ -21,7 +21,7 @@ export const Theater = () => {
     const [showData, setShowData] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [showError, setShowError] = useState(false);
-
+    const [showInfo, setShowInfo] = useState(true);
     useEffect(() => {
         if (!isFirstRender.current) {
             if (topTheaterData.length > 0) {
@@ -52,8 +52,11 @@ export const Theater = () => {
     }, []);
 
     const handleLimitChange = (value) => {
+        setShowData(false);
+
         if (isNaN(parseInt(value))) {
             setInputError("Please use a numeric value as a limit.");
+            setQueryLimit('');
         } else {
             setQueryLimit(value);
             setInputError(null);
@@ -94,6 +97,25 @@ export const Theater = () => {
     return (
         <div>
             <h1 className="mb-2">Top Theater Revenue</h1>
+            {showInfo ?
+                <div id="informational-banner" tabindex="-1" class="fixed top-0 start-0 z-50 flex flex-col justify-between w-full p-4 border-b border-gray-200 md:flex-row bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                    <div class="mb-4 md:mb-0 md:me-4">
+                        <h2 class="mb-1 text-base font-semibold text-gray-900 dark:text-white">Notice on data</h2>
+                        <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">The data displayed on this page is for demostration purposes only and does not represent any actual movie or theater sales.<br></br>Theater examples were pulled using ChatGPT and theater sales were randomly seeded.</p>
+                    </div>
+                    <div class="flex items-center flex-shrink-0">
+                        <a href="https://github.com/CameronPeace/Cameron-App/blob/main/app/Services/OpenAiService.php#L48-L58" target="_blank" class="inline-flex items-center justify-center px-3 py-2 me-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                            <path d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
+                        </svg> Let me see!</a>
+                        <button onClick={() => setShowInfo(false)} data-dismiss-target="#informational-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close banner</span>
+                        </button>
+                    </div>
+                </div>
+                : null}
             <div className="min-h-56 h-auto flex flex-col justify-center items-center">
                 {showWarning ?
                     <div onClick={() => setShowWarning(false)} className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
@@ -113,7 +135,6 @@ export const Theater = () => {
                     </div>
 
                     : null}
-
                 <div className="flex flex-row justify-center items-center">
                     <div className="ml-3">
                         <InputLabel value={'Start Date'} className="mr-3 text-xl" />
@@ -126,7 +147,7 @@ export const Theater = () => {
                 </div>
                 <div className="flex flex-row justify-center items-center mt-5">
                     <InputLabel value={'Limit'} className="mr-3 text-xl" />
-                    <TextInput type="number" min="1" value={queryLimit} placeholder={queryLimit} onChange={(event) => handleLimitChange(event.target.value)} />
+                    <TextInput type="number" min="1" value={queryLimit} placeholder={queryLimit} onInput={(event) => handleLimitChange(event.target.value)} />
                 </div>
                 <div className="mt-5 mb-5">
                     <PrimaryButton disabled={inputError} onClick={() => getTopTheaters()}>Search</PrimaryButton>
