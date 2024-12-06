@@ -135,7 +135,6 @@ export const TheaterData = () => {
                     </div>
 
                     : null}
-
                 <div className="flex flex-row justify-center items-center">
                     <div className="ml-3">
                         <InputLabel value={'Start Date'} className="mr-3 text-xl" />
