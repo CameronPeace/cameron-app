@@ -1,0 +1,56 @@
+"id","title","genre","director","poster_url","release_date","created_at","updated_at"
+1,"The Lion King","Animation","Roger Allers, Rob Minkoff",NULL,"1994-06-15","2024-11-29 10:43:57",NULL
+2,"Toy Story","Animation","John Lasseter",NULL,"1995-11-22","2024-11-29 10:43:57",NULL
+3,"Finding Nemo","Animation","Andrew Stanton",NULL,"2003-05-30","2024-11-29 10:43:57",NULL
+4,"Frozen","Animation","Chris Buck, Jennifer Lee",NULL,"2013-11-27","2024-11-29 10:43:57",NULL
+5,"Shrek","Animation","Andrew Adamson, Vicky Jenson",NULL,"2001-05-22","2024-11-29 10:43:57",NULL
+6,"The Incredibles","Animation","Brad Bird",NULL,"2004-11-05","2024-11-29 10:43:57",NULL
+7,"Zootopia","Animation","Byron Howard, Rich Moore",NULL,"2016-03-17","2024-11-29 10:43:57",NULL
+8,"Coco","Animation","Lee Unkrich, Adrian Molina",NULL,"2017-11-22","2024-11-29 10:43:57",NULL
+9,"Moana","Animation","Ron Clements, John Musker",NULL,"2016-11-23","2024-11-29 10:43:57",NULL
+10,"Inside Out","Animation","Pete Docter, Ronnie del Carmen",NULL,"2015-06-19","2024-11-29 10:43:57",NULL
+11,"Kung Fu Panda","Animation","Mark Osborne, John Stevenson",NULL,"2008-06-06","2024-11-29 10:43:57",NULL
+12,"Despicable Me","Animation","Pierre Coffin, Chris Renaud",NULL,"2010-07-09","2024-11-29 10:43:57",NULL
+13,"How to Train Your Dragon","Animation","Dean DeBlois, Chris Sanders",NULL,"2010-03-26","2024-11-29 10:43:57",NULL
+14,"Ratatouille","Animation","Brad Bird, Jan Pinkava",NULL,"2007-06-29","2024-11-29 10:43:57",NULL
+15,"The Secret Life of Pets","Animation","Chris Renaud",NULL,"2016-07-08","2024-11-29 10:43:57",NULL
+16,"Cloudy with a Chance of Meatballs","Animation","Phil Lord, Christopher Miller",NULL,"2009-09-18","2024-11-29 10:43:57",NULL
+17,"The Lego Movie","Animation","Phil Lord, Christopher Miller",NULL,"2014-02-07","2024-11-29 10:43:57",NULL
+18,"Monsters, Inc.","Animation","Pete Docter, David Silverman",NULL,"2001-11-02","2024-11-29 10:43:57",NULL
+19,"WALL-E","Animation","Andrew Stanton",NULL,"2008-06-27","2024-11-29 10:43:57",NULL
+20,"The Peanuts Movie","Animation","Steve Martino",NULL,"2015-11-06","2024-11-29 10:43:57",NULL
+21,"Paddington","Family","Paul King",NULL,"2014-11-28","2024-11-29 10:43:57",NULL
+22,"Mary Poppins","Family","Robert Stevenson",NULL,"1964-08-27","2024-11-29 10:43:57",NULL
+23,"The Wizard of Oz","Fantasy","Victor Fleming",NULL,"1939-08-15","2024-11-29 10:43:57",NULL
+24,"E.T. the Extra-Terrestrial","Science Fiction","Steven Spielberg",NULL,"1982-06-11","2024-11-29 10:43:57",NULL
+25,"The Sound of Music","Musical","Robert Wise",NULL,"1965-03-02","2024-11-29 10:43:57",NULL
+26,"The Parent Trap","Family","David Swift",NULL,"1961-06-21","2024-11-29 10:43:57",NULL
+27,"Home Alone","Comedy","Chris Columbus",NULL,"1990-11-16","2024-11-29 10:43:57",NULL
+28,"Matilda","Family","Danny DeVito",NULL,"1996-08-02","2024-11-29 10:43:57",NULL
+29,"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Fantasy","Andrew Adamson",NULL,"2005-12-09","2024-11-29 10:43:57",NULL
+30,"The Muppet Movie","Family","James Frawley",NULL,"1979-06-22","2024-11-29 10:43:57",NULL
+31,"The Goonies","Adventure","Richard Donner",NULL,"1985-06-07","2024-11-29 10:43:57",NULL
+32,"Jumanji","Adventure","Joe Johnston",NULL,"1995-12-15","2024-11-29 10:43:57",NULL
+33,"The Princess Bride","Fantasy","Rob Reiner",NULL,"1987-09-25","2024-11-29 10:43:57",NULL
+34,"A Bug's Life","Animation","John Lasseter, Andrew Stanton",NULL,"1998-11-25","2024-11-29 10:43:57",NULL
+35,"The Iron Giant","Animation","Brad Bird",NULL,"1999-08-06","2024-11-29 10:43:57",NULL
+36,"The Little Mermaid","Animation","Ron Clements, John Musker",NULL,"1989-11-17","2024-11-29 10:43:57",NULL
+37,"Aladdin","Animation","Ron Clements, John Musker",NULL,"1992-11-25","2024-11-29 10:43:57",NULL
+38,"The Jungle Book","Animation","Wolfgang Reitherman",NULL,"1967-10-18","2024-11-29 10:43:57",NULL
+39,"The Secret Garden","Drama","Agnieszka Holland",NULL,"1993-08-13","2024-11-29 10:43:57",NULL
+40,"The BFG","Fantasy","Steven Spielberg",NULL,"2016-07-01","2024-11-29 10:43:57",NULL
+41,"A Wrinkle in Time","Fantasy","Ava DuVernay",NULL,"2018-03-09","2024-11-29 10:43:57",NULL
+42,"The Nut Job","Animation","Peter Lepeniotis",NULL,"2014-01-17","2024-11-29 10:43:57",NULL
+43,"Trolls","Animation","Mike Mitchell, Walt Dohrn",NULL,"2016-11-04","2024-11-29 10:43:57",NULL
+44,"The Emoji Movie","Animation","Tony Leondis",NULL,"2017-07-28","2024-11-29 10:43:57",NULL
+45,"The Angry Birds Movie","Animation","Clay Kaytis, Fergal Reilly",NULL,"2016-05-20","2024-11-29 10:43:57",NULL
+46,"Sing","Animation","Garth Jennings",NULL,"2016-12-21","2024-11-29 10:43:57",NULL
+47,"Hotel Transylvania","Animation","Genndy Tartakovsky",NULL,"2012-09-28","2024-11-29 10:43:57",NULL
+48,"The Lego Batman Movie","Animation","Chris McKay",NULL,"2017-02-10","2024-11-29 10:43:57",NULL
+49,"The Boss Baby","Animation","Tom McGrath",NULL,"2017-03-31","2024-11-29 10:43:57",NULL
+50,"The Croods","Animation","Kirk DeMicco, Chris Sanders",NULL,"2013-03-22","2024-11-29 10:43:57",NULL
+51,"The Addams Family","Animation","Conrad Vernon, Greg Tiernan",NULL,"2019-10-11","2024-11-29 10:43:57",NULL
+52,"Scoob!","Animation","Tony Cervone",NULL,"2020-05-15","2024-11-29 10:43:57",NULL
+53,"The SpongeBob Movie: Sponge on the Run","Animation","Tim Hill",NULL,"2020-08-14","2024-11-29 10:43:57",NULL
+54,"Space Jam: A New Legacy","Animation","Malcolm D. Lee",NULL,"2021-07-16","2024-11-29 10:43:57",NULL
+55,"Raya and the Last Dragon","Animation","Don Hall, Carlos López Estrada",NULL,"2021-03-05","2024-11-29 10:43:57",NULL
