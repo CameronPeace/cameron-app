@@ -8,7 +8,7 @@ use App\Models\Sale;
 use App\Models\Screening;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TheaterDataSeeder extends Seeder
 {
     /**
      * Seed the application's database with theater data.
