@@ -52,8 +52,11 @@ export const TheaterData = () => {
     }, []);
 
     const handleLimitChange = (value) => {
+        setShowData(false);
+
         if (isNaN(parseInt(value))) {
             setInputError("Please use a numeric value as a limit.");
+            setQueryLimit('');
         } else {
             setQueryLimit(value);
             setInputError(null);
@@ -126,7 +129,7 @@ export const TheaterData = () => {
                 </div>
                 <div className="flex flex-row justify-center items-center mt-5">
                     <InputLabel value={'Limit'} className="mr-3 text-xl" />
-                    <TextInput type="number" min="1" value={queryLimit} placeholder={queryLimit} onChange={(event) => handleLimitChange(event.target.value)} />
+                    <TextInput type="number" min="1" value={queryLimit} placeholder={queryLimit} onInput={(event) => handleLimitChange(event.target.value)} />
                 </div>
                 <div className="mt-5 mb-5">
                     <PrimaryButton disabled={inputError} onClick={() => getTopTheaters()}>Search</PrimaryButton>
