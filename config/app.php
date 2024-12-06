@@ -58,7 +58,9 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
-    
+
+    'api_url' => env('API_URL', 'http://localhost:3000'),
+
     'open_ai_secret' => env('OPEN_AI_API_SECRET'),
 
     /*
