@@ -73,7 +73,6 @@ class OpenAiService
                 \Log::error($response);
                 throw new \Exception('No ChatGPT results provided.');
             }
-            // TODO we will probably need to remove those escape characters and new lines. 
             // We will only receive one complete response from ChatGPT.
             return $choices[0]['message']['content'];
         } catch (\Exception $e) {
