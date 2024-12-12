@@ -9,7 +9,7 @@ class OpenAiServiceTest extends TestCase
 {
 
     /**
-     * Test the getTopTheaters function returns expected data.
+     * Test the requestTheaterData function returns expected data.
      *
      * @return void
      */
@@ -31,6 +31,11 @@ class OpenAiServiceTest extends TestCase
         $this->assertEqualsCanonicalizing($return['body']['choices'][0]['message']['content'], $theaters);
     }
 
+    /**
+     * Test the  requestMovieData can parse and return the correct response.
+     *
+     * @return void
+     */
     public function testRequestMovieData()
     {
         $return = $this->buildMovieData();

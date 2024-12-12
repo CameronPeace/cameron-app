@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiServiceException;
 use App\Services\ApiService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -23,11 +25,13 @@ class ApiController extends Controller
 
             $apiService = new ApiService();
 
-           $topTheaters = $apiService->getTopTheaters($validated['fromDate'], $validated['toDate'], $validated['queryLimit']);
+            $topTheaters = $apiService->getTopTheaters($validated['fromDate'], $validated['toDate'], $validated['queryLimit']);
 
-            return response()->json(['data' => $topTheaters], 200);
+            return response()->json($topTheaters, 200);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->getMessage()], 400);
+        } catch (ApiServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
         } catch (\Exception $e) {
             \Log::error($e);
             return response()->json(['message' => 'An unexpected error occurred.', 'error' => $e->getMessage()], 500);

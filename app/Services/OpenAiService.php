@@ -13,8 +13,7 @@ class OpenAiService
 
     public function __construct(OpenAiRequest $openAiRequest = null)
     {
-        $openAiRequest = $openAiRequest ?? new OpenAiRequest();
-        $this->setOpenAiRequest($openAiRequest);
+        $this->setOpenAiRequest($openAiRequest ?? new OpenAiRequest());
     }
 
     /**

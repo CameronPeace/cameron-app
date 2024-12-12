@@ -27,7 +27,6 @@ class OpenAiRequest extends Request
 	{
         parent::__construct();
 		$this->setAutorizationToken(config('app.open_ai_secret'));
-
 	}
 
 	/**

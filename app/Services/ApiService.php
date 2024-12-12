@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ApiServiceException;
 use App\Services\Helpers\ApiRequest;
 
 class ApiService
@@ -26,14 +27,35 @@ class ApiService
     {
         $requestParams = ['fromDate' => $fromDate, 'toDate' => $toDate, 'limit' => $limit];
        
-        return $this->getApiRequest()->requestTopTheaters($requestParams);
+        $response = $this->getApiRequest()->requestTopTheaters($requestParams);
+
+        if (isset($response['status']) && $response['status'] === false) {
+            throw new ApiServiceException($response['message'] ?? 'An error occurred while requesting top theater data.');
+        }
+
+        return $response;
     }
 
-    public function getTopMovies(strong $fromDate, string $toDate, int $limit)
+    /**
+     * Get the top performing movies from our Api.
+     *
+     * @param string $fromDate
+     * @param string $toDate
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getTopMovies(string $fromDate, string $toDate, int $limit): array
     {
         $requestParams = ['fromDate' => $fromDate, 'toDate' => $toDate, 'limit' => $limit];
 
-        return $this->getApiRequest()->requestTopMovies($requestParams);
+        $response = $this->getApiRequest()->requestTopMovies($requestParams);
+
+        if (isset($response['status']) && $response['status'] === false) {
+            throw new ApiServiceException($response['message'] ?? 'An error occurred while requesting top movie data.');
+        }
+
+        return $response;
     }
 
     /** 

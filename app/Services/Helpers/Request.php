@@ -3,6 +3,7 @@
 namespace App\Services\Helpers;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 
 abstract class Request
@@ -48,11 +49,14 @@ abstract class Request
             );
 
             return $response;
+        } catch (ClientException $e) {
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+            
+            return ['status' => false, 'message' => $response['message'] ?? $response['error'] ?? 'Error' ];
         } catch (GuzzleException $e) {
             \Log::error($e);
+            return ['status' => false, 'message' => $e->getMessage()];
         }
-
-        return ['status' => 'error'];
     }
 
     /**
@@ -67,7 +71,7 @@ abstract class Request
     {
         $guzzleSettings = array(
             'connect_timeout' => 60,
-            'timeout' => 60,
+            'timeout' => 240,
             'headers' => array(
                 'Authorization' => 'Bearer ' . $this->getAuthorizationToken(),
                 'accept' => 'application/json',
