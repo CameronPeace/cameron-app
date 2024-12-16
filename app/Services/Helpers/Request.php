@@ -13,13 +13,10 @@ abstract class Request
      * @var GuzzleHttp Client
      */
     private $client;
-
-    /**
-     * @var string The Api Jwt Token
-     */
+    
     private $authorizationToken;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->client = new Client();
         $this->setAutorizationToken('');
