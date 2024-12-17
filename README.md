@@ -4,7 +4,7 @@ A laravel based application displaying various projects and features.
 ## Spinning Up
 To setup locally please follow the steps below. You will need docker installed and running.
 These steps should be followed in your desired terminal.
-1. In the root of the project directory, copy the contents of the `.env.example` file and populate teh `DB_USERNAME` and `DB_PASSWORD` values with your desired local db credentials. AS well as the `OPEN_AI_API_SECRET` key.
+1. In the root of the project directory, copy the contents of the `.env.example` file and populate the `DB_USERNAME` and `DB_PASSWORD` values with your desired local db credentials. AS well as the `OPEN_AI_API_SECRET` key.
     - if you do not have an Open AI API account import files should be provided for all the needed tables.
 2. In your terminal run `composer install` while at the root of the project directory
 3. Then, run `php artisan key:generate` to generate a app key.
