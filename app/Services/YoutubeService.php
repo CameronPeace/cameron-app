@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Exceptions\YoutubeServiceException;
 use App\Services\Helpers\YoutubeRequest;
- 
-class YoutubeService {
+
+class YoutubeService
+{
 
     /**
      * The youtube request instance utilitzed to make requests to Youtube's Api.
@@ -45,7 +46,7 @@ class YoutubeService {
      *
      * @return void
      */
-    public function getChannelDataByHandle(string $handle = 'Bushy' )
+    public function getChannelDataByHandle(string $handle = 'Bushy')
     {
         $params = [
             'part' => 'id',
@@ -79,7 +80,7 @@ class YoutubeService {
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
         }
-    }    
+    }
     /**
      * Set our youtube request instance.
      *
@@ -87,7 +88,7 @@ class YoutubeService {
      *
      * @return void
      */
-    public function setYoutubeRequest(YoutubeRequest $youtubeRequest) 
+    public function setYoutubeRequest(YoutubeRequest $youtubeRequest)
     {
         $this->youtubeRequest = $youtubeRequest;
     }

@@ -15,7 +15,7 @@ class YoutubeRequest extends Request
         parent::__construct();
         $this->key = config('app.youtube_api_key');
     }
-    
+
     /**
      * Get the url to make requests to Youtube's data API,
      *
