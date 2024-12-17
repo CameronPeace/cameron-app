@@ -16,6 +16,8 @@ class ApiRequest extends Request
     public function __construct()
     {
         parent::__construct();
+
+        // TODO we can cache this key and reuse it until it expires. Need to setup redis.
         $this->setAutorizationToken(app(JwtService::class)->generate());
     }
 
