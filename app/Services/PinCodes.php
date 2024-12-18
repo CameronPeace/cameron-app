@@ -4,7 +4,7 @@ namespace App\Services;
 
 
 class PinCodes
-{   
+{
     /**
      * Generate a batch of pincodes.
      *
@@ -14,16 +14,19 @@ class PinCodes
      *
      * @return array<string> $batch
      */
-   public function generatePinCodes($total = 20, $minLength = 4, $maxLength = 7)
-   {
+    public function generatePinCodes(int $total = 20, int $minLength = 4, int $maxLength = 7)
+    {
         $batch = [];
 
+        // create an array between the desired min and max.
         $numbers = range($minLength, $maxLength);
 
+        // select an random index for our code length.
         $index = array_rand($numbers, 1);
         $code = $this->generateSingleCode($numbers[$index]);
 
-        for($i = 0; $i < $total; $i++) {
+        // iterate through our total until we have the desired amount of codes.
+        for ($i = 0; $i < $total; $i++) {
 
             $index = array_rand($numbers, 1);
 
@@ -37,24 +40,24 @@ class PinCodes
 
         \Log::info($batch);
         return $batch;
-   }
+    }
 
-   /**
-    * Generate a pin code.
-    *
-    * @param int $maxLength
-    *
-    * @return string $pinCode
-    */
-   public function generateSingleCode(int $maxLength)
-   {
+    /**
+     * Generate a pin code.
+     *
+     * @param int $maxLength
+     *
+     * @return string $pinCode
+     */
+    public function generateSingleCode(int $maxLength)
+    {
         $code = [];
-        
+
         // Create each int individually so we can have zeros.
-        for($k = 0; $k < $maxLength; $k++) {
+        for ($k = 0; $k < $maxLength; $k++) {
             $code[] = rand(0, 9);
-        } 
+        }
 
         return implode('', $code);
-   }
+    }
 }
