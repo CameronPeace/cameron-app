@@ -66,8 +66,6 @@ class YoutubeService
      */
     public function getChannelId(string $handle)
     {
-        $channelData = $this->getChannelDataByHandle($handle);
-
         try {
             $channelData = $this->getChannelDataByHandle($handle);
 
