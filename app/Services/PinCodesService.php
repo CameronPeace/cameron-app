@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class PinCodesService
 {
     /**
@@ -21,21 +20,24 @@ class PinCodesService
         // create an array between the desired min and max.
         $numbers = range($minLength, $maxLength);
 
-        // select an random index for our code length.
-        $index = array_rand($numbers, 1);
-        $code = $this->generateSingleCode($numbers[$index]);
-
         // iterate through our total until we have the desired amount of codes.
         for ($i = 0; $i < $total; $i++) {
-
+            // select an random index for our code length.
             $index = array_rand($numbers, 1);
-
-            // create a new pincode until its unique. 
-            while (in_array($code, $batch)) {
-                $code = $this->generateSingleCode($numbers[$index]);
+            $pincode = null;
+            $attempts = 0;
+            // start populating our batch with unique values until total is met.
+            while (in_array($pincode, $batch) || $pincode === null) {
+                
+                // if we cannot create a unique code in the set amount of tries exit the loop.
+                if ($attempts === 10) {
+                    break;
+                }
+                $pincode = $this->generateSingleCode($numbers[$index]);
+                $attempts++;
             }
 
-            $batch[] = $code;
+            $batch[] = $pincode;
         }
 
         \Log::info($batch);
@@ -43,18 +45,18 @@ class PinCodesService
     }
 
     /**
-     * Generate a pin code.
+     * Generate a pin code at the desired length.
      *
-     * @param int $maxLength
+     * @param int $codeLength The desired length of the code.
      *
      * @return string $pinCode
      */
-    public function generateSingleCode(int $maxLength)
+    public function generateSingleCode(int $codeLength)
     {
         $code = [];
 
         // Create each int individually so we can have zeros.
-        for ($k = 0; $k < $maxLength; $k++) {
+        for ($k = 0; $k < $codeLength; $k++) {
             $code[] = rand(0, 9);
         }
 
