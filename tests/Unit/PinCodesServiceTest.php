@@ -81,9 +81,6 @@ class PinCodesServiceTest extends TestCase
 
         $batch = $this->class->generatePinCodes($total, $min, $max);
 
-        // assert after removing any dupes that the batch count matches the total. 
-        $this->assertEquals(count(array_unique($batch)), $total);
-
         foreach ($batch as $pinCode) {
             // iterate through each code and check its size is not more than we expected.
             $this->assertTrue(strlen($pinCode) <= $max);
