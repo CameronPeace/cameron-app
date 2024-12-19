@@ -28,7 +28,7 @@ class PinCodesService
             $attempts = 0;
             // start populating our batch with unique values until total is met.
             while (in_array($pinCode, $batch) || $pinCode === null) {
-                
+
                 // if we cannot create a unique code in the set amount of tries exit the loop.
                 if ($attempts === 10) {
                     break;
@@ -40,7 +40,6 @@ class PinCodesService
             $batch[] = $pinCode;
         }
 
-        \Log::info($batch);
         return $batch;
     }
 
