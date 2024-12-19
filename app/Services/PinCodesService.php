@@ -17,27 +17,27 @@ class PinCodesService
     {
         $batch = [];
 
-        // create an array between the desired min and max.
+        // create an array of integers between the desired min and max.
         $numbers = range($minLength, $maxLength);
 
         // iterate through our total until we have the desired amount of codes.
         for ($i = 0; $i < $total; $i++) {
             // select an random index for our code length.
             $index = array_rand($numbers, 1);
-            $pincode = null;
+            $pinCode = null;
             $attempts = 0;
             // start populating our batch with unique values until total is met.
-            while (in_array($pincode, $batch) || $pincode === null) {
+            while (in_array($pinCode, $batch) || $pinCode === null) {
                 
                 // if we cannot create a unique code in the set amount of tries exit the loop.
                 if ($attempts === 10) {
                     break;
                 }
-                $pincode = $this->generateSingleCode($numbers[$index]);
+                $pinCode = $this->generateSingleCode($numbers[$index]);
                 $attempts++;
             }
 
-            $batch[] = $pincode;
+            $batch[] = $pinCode;
         }
 
         \Log::info($batch);
