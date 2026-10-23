@@ -89,11 +89,11 @@ class DonationCheckoutService
             'mode' => 'payment',
             'submit_type' => 'donate',
 
-            'client_reference_id' => (string) $donationId,
+            'client_reference_id' => $donationId,
 
             'metadata' => [
-                'donation_id' => (string) $donationId,
-                'event_id' => (string) $eventId,
+                'donation_id' => $donationId,
+                'event_id' => $eventId,
             ],
 
             'line_items' => [
