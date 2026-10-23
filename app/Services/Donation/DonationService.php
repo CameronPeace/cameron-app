@@ -2,17 +2,22 @@
 
 namespace App\Services;
 
+use App\Data\Donation\DonationPaymentData;
+use App\Data\Donation\DonatorData;
+use App\Jobs\ProcessDonationPaymentJob;
+use App\Repositories\Donation\DonationPaymentRepositoryInterface;
+use App\Repositories\Donation\DonatorRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-Class DonationService 
+class DonationService
 {
-    public function ___construct(private DonationRepositoryInterface $repository)
-    {
+    public function __construct(
+        private DonationPaymentRepositoryInterface $donationPaymentRepository,
+        private DonatorRepositoryInterface $donatorRepository
+    ) {}
 
-    }
-
-    public function queueDonation(string $amount, string $currency, string $email, string $phone, ?string $firstName = '', ?string $lastName = '', )
+    public function queueDonation(string $amount, string $currency, string $email, string $phone, ?string $firstName = '', ?string $lastName = '',)
     {
 
         // If the submission did not include a name, save them as a Anonymous Supporter
@@ -21,27 +26,31 @@ Class DonationService
             $lastName = 'Supporter';
         }
 
+        $donatorDataDto = new DonatorData(
+            email: $email,
+            phone: $phone,
+            firstName: $firstName,
+            lastName: $lastName
+        );
+
         $idempotencyKey = Str::uuid()->toString();
 
-         // shorthand define our data
-        $donationData = [
-            // :$amount,
-            // :$currency, 
-            // :$email,
-            // :$phone,
-            // :$firstName,
-            // :$lastName
-            // :$idempotencyKey
-        ];
+        // Wrap in transaction to prevent a job queuing without the needed table records.
+        DB::transaction(function () use ($donatorDataDto, $amount, $currency, $idempotencyKey) {
+            $donator = $this->donatorRepository->create($donatorDataDto);
 
-        // Wrap in transaction to prevent job queuing not assocated with a database record
-        DB::transaction(function () use ($donationData) {
-            $donation = $this->donationRepository->create($donationData);
+            // Add our donator ID to our payment record.
+            $donationPaymentDto = new DonationPaymentData(
+                amount: $amount,
+                currency: $currency,
+                idempotencyKey: $idempotencyKey,
+                donatorId: $donator->id
+            );
+
+            $donationPayment = $this->donationPaymentRepository->create($donationPaymentDto);
 
             //fire the job once we have our record.
-            ProcessDonationJob::dispatch($donation->id)->afterCommit();
+            ProcessDonationPaymentJob::dispatch($donationPayment->id)->afterCommit();
         });
-        
-
     }
 }
