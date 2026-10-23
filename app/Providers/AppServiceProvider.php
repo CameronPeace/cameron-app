@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Stripe\StripeClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
             DonationPaymentRepositoryInterface::class,
             DonatorRepository::class
         );
+
+        $this->app->singleton(StripeClient::class, function () {
+            return new StripeClient(
+                config('services.stripe.secret')
+            );
+        });
     }
 
     /**
