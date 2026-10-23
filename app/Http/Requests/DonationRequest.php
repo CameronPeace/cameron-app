@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +24,7 @@ class DonationSubmissionRequest extends FormRequest
         // Standardize casing for currency
         if ($this->has('currency')) {
             $this->merge([
-                'currency' => strtolower($this->currency)
+                'currency' => strtoupper($this->currency)
             ]);
         }
     }
