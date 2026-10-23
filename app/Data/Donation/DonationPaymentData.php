@@ -4,5 +4,10 @@ namespace App\Data\Donation;
 
 readonly class DonationPaymentData
 {
-    public function __construct(public string $amount, public string $currency, public string $idempotencyKey, public string $donatorId) {}
+    public function __construct(
+        public string $donationId,
+        public string $provider,
+        public string $idempotencyKey,
+        public string $status = 'pending',
+    ) {}
 }
