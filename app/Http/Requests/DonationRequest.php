@@ -38,8 +38,8 @@ class DonationSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['string', 'max:255'],
+            'last_name' => ['string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string', 'min:7', 'max:20'],
             // TODO: Will support more currencies in the future USD for now. 
