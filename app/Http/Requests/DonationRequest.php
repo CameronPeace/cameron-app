@@ -13,7 +13,7 @@ class DonationSubmissionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // TODO We can use this to setup user permissions
+        // TODO We can use this to setup permissions later
         return true;
     }
 
@@ -22,10 +22,10 @@ class DonationSubmissionRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        // Standardize casing for currency usd => USD
+        // Standardize casing for currency
         if ($this->has('currency')) {
             $this->merge([
-                'currency' => strtoupper($this->currency)
+                'currency' => strtolower($this->currency)
             ]);
         }
     }
@@ -42,7 +42,9 @@ class DonationSubmissionRequest extends FormRequest
             'last_name' => ['string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string', 'min:7', 'max:20'],
+            'event_id' => ['required', 'uuid', 'exists:fundrasing_events.id'],
             // TODO: Will support more currencies in the future USD for now. 
+            'amount' => ['required', 'numeric', 'decimal:0,2', 'min:1'],
             'currency' => ['required', 'string', 'uppercase', 'size:3', Rule::in(['USD'])]
         ];
     }
