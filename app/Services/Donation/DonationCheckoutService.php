@@ -25,13 +25,12 @@ class DonationCheckoutService
         $amountInCents = $this->getAmountInCents($amount);
         try {
 
-            // TODO move this to the repository. 
             $event = $this->fundraiserEventService->getFundraiserEventById($eventId);
             $records = $this->donationService->readyDonation($amount, $currency, $eventId, $email, $phone, $firstName, $lastName);
 
-            // TODO create the checkout page here. 
             $parameters = $this->buildCheckoutParameters($amountInCents, $currency, $event->id, $event->name, $records['donationId']);
 
+            // create the checkout page. 
             $session = $this->client->createCheckoutSession($parameters);
 
             // add our provider session.
@@ -49,10 +48,17 @@ class DonationCheckoutService
 
             throw $exception;
         } catch (ModelNotFoundException $exception) {
-            Log::error('Fundraising event not found or no longer active.', [
+            Log::error('Unable to complete database updates for checkout', [
                 'error'  => $exception::class,
                 'message' => $exception->getMessage(),
 
+            ]);
+
+            throw $exception;
+        } catch (\Throwable $exception) {
+           Log::error('Unable to generate checkout, something went wrong!', [
+                'error'  => $exception::class,
+                'message' => $exception->getMessage(),
             ]);
 
             throw $exception;
