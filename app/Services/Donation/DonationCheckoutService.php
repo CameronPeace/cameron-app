@@ -83,7 +83,7 @@ class DonationCheckoutService
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => $currency,
+                        'currency' => strtolower($currency),
                         'product_data' => [
                             'name' => $eventName,
                         ],
