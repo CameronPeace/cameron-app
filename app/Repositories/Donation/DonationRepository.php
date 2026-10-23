@@ -12,10 +12,10 @@ class DonationRepository implements DonationRepositoryInterface
         return Donation::create([]);
     }
 
-    public function update(DonationData $data, int $id): int
+    public function update(DonationData $data, int $id): bool
     {
         // Find our record then update it. 
-        $donator = Donation::findOrFail($id);
-        return $donator->updateOrFail($data);
+        $donationData = Donation::findOrFail($id);
+        return $donationData->updateOrFail($data);
     }
 }

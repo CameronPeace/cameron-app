@@ -21,7 +21,6 @@ class DonationService
 
     public function readyDonation(string $amount, string $currency, string $eventId, string $email, string $phone, ?string $firstName = '', ?string $lastName = '',)
     {
-
         // If the submission did not include a name, save them as a Anonymous Supporter
         if ($firstName === '' && $lastName === '') {
             $firstName = 'Anonymous';
@@ -61,7 +60,7 @@ class DonationService
             );
 
             $donationPayment = $this->donationPaymentRepository->create($donationPaymentDto);
-            
+
             return [
                 'donationId' => $donation->id,
                 'donationPaymentId' => $donationPayment->id

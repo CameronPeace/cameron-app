@@ -12,7 +12,7 @@ class DonatorRepository implements DonatorRepositoryInterface
         return Donator::create([]);
     }
 
-    public function update(DonatorData $data, int $id): int
+    public function update(DonatorData $data, int $id): bool
     {
         // Find our record then update it. 
         $donator = Donator::findOrFail($id);

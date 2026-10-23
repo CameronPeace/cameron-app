@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Clients\Payments\Stripe\StripeCheckoutClient;
+use App\Services\FundraiserEventService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Stripe\Exception\ApiErrorException;
@@ -11,7 +12,7 @@ use Stripe\Exception\ApiErrorException;
 class DonationCheckoutService
 {
 
-    public function __construct(private StripeCheckoutClient $client, private DonationService $donationService) {}
+    public function __construct(private StripeCheckoutClient $client, private DonationService $donationService, private FundraiserEventService $fundraiserEventService) {}
 
     public function createCheckout(string $amount, string $currency, string $eventId, string $email, string $phone, ?string $firstName = '', ?string $lastName = '')
     {
@@ -20,8 +21,7 @@ class DonationCheckoutService
         try {
 
             // TODO move this to the repository. 
-            $event = FundRaisingEvent::where('id', $eventId)->where('status', 'active')->firstOrFail();
-
+            $event = $this->fundraiserEventService->getFundraiserEventById($eventId);
             $records = $this->donationService->readyDonation($amount, $currency, $eventId, $email, $phone, $firstName, $lastName);
 
             // TODO create the checkout page here. 
@@ -49,6 +49,9 @@ class DonationCheckoutService
         }
     }
 
+    /**
+     * Prepare the donation amount in cents for payment providers.
+     */
     private function getAmountInCents(string $amount)
     {
         // avoid floating point arithmetic

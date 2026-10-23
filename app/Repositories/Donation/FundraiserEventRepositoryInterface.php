@@ -2,11 +2,14 @@
 
 namespace App\Repositories\Donation;
 
-use App\Data\Donation\FundraiserEvent;
+use App\Data\Donation\FundraiserEventData;
+use App\Models\FundraiserEvent;
 
-interface FundraiserEventRepositoryIntrerface
+interface FundraiserEventRepositoryInterface
 {
     public function create(FundraiserEventData $data): ?FundraiserEvent;
 
-    public function update(FundraiserEventData $data, int $id): int;
+    public function update(FundraiserEventData $data, string $id): bool;
+
+    public function getById(string $id): ?FundraiserEvent;
 }
