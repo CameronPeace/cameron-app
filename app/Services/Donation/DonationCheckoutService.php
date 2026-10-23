@@ -12,7 +12,12 @@ use Stripe\Exception\ApiErrorException;
 class DonationCheckoutService
 {
 
-    public function __construct(private StripeCheckoutClient $client, private DonationService $donationService, private FundraiserEventService $fundraiserEventService) {}
+    public function __construct(
+        private StripeCheckoutClient $client,
+        private DonationService $donationService,
+        private FundraiserEventService $fundraiserEventService,
+        private DonationPaymentService $donationPaymentService
+    ) {}
 
     public function createCheckout(string $amount, string $currency, string $eventId, string $email, string $phone, ?string $firstName = '', ?string $lastName = '')
     {
@@ -27,7 +32,12 @@ class DonationCheckoutService
             // TODO create the checkout page here. 
             $parameters = $this->buildCheckoutParameters($amountInCents, $currency, $event->id, $event->name, $records['donationId']);
 
-            return $this->client->createCheckoutSession($parameters);
+            $session = $this->client->createCheckoutSession($parameters);
+
+            // add our provider session.
+            $this->donationPaymentService->updateProviderSession($session->id, $records['donationPaymentId']);
+
+            return $session;
         } catch (ApiErrorException $exception) {
 
             // Log the error and pass it along.

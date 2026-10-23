@@ -9,5 +9,5 @@ interface DonationPaymentRepositoryInterface
 {
     public function create(DonationPaymentData $data): ?DonationPayment;
 
-    public function update(DonationPaymentData $data, int $id): bool;
+    public function update(array $data, string $id): bool;
 }

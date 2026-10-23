@@ -12,7 +12,7 @@ class DonationPaymentRepository implements DonationPaymentRepositoryInterface
         return DonationPayment::create([]);
     }
 
-    public function update(DonationPaymentData $data, int $id): bool
+    public function update(array $data, string $id): bool
     {
         // Find our record then update it. 
         $donationPayment = DonationPayment::findOrFail($id);
