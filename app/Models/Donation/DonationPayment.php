@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Donation;
 
-use App\Models\Donation;
+use App\Models\Donation\Donation;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

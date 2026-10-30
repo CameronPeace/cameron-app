@@ -3,7 +3,7 @@
 namespace App\Repositories\Donation;
 
 use App\Data\Donation\FundraiserEventData;
-use App\Models\FundraiserEvent;
+use App\Models\Donation\FundraiserEvent;
 
 interface FundraiserEventRepositoryInterface
 {

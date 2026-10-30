@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Donation;
 
 use App\Data\Donation\DonationData;
 use App\Data\Donation\DonationPaymentData;

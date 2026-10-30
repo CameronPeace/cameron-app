@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Donation;
 
 use App\Clients\Payments\Stripe\StripeCheckoutClient;
-use App\Services\FundraiserEventService;
+use App\Services\Donation\FundraiserEventService;
+use App\Support\Money;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Stripe\Exception\ApiErrorException;
@@ -22,7 +23,8 @@ class DonationCheckoutService
     public function createCheckout(string $amount, string $currency, string $eventId, string $email, string $phone, ?string $firstName = '', ?string $lastName = '')
     {
 
-        $amountInCents = $this->getAmountInCents($amount);
+        $amountInCents = Money::toMinorUnits($amount);
+        
         try {
 
             $event = $this->fundraiserEventService->getFundraiserEventById($eventId);
@@ -63,17 +65,6 @@ class DonationCheckoutService
 
             throw $exception;
         }
-    }
-
-    /**
-     * Prepare the donation amount in cents for payment providers.
-     */
-    private function getAmountInCents(string $amount)
-    {
-        // avoid floating point arithmetic
-        // Note we will have to adjust this to deal with currencies with more than 2 decimal places. 
-        [$dollars, $cents] = array_pad(explode('.', $amount, 2), 2, '0');
-        return ((int) $dollars * 100) + (int) str_pad($cents, 2, '0');
     }
 
     /**

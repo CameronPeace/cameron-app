@@ -3,7 +3,7 @@
 namespace App\Repositories\Donation;
 
 use App\Data\Donation\DonationData;
-use App\Models\Donation;
+use App\Models\Donation\Donation;
 
 class DonationRepository implements DonationRepositoryInterface
 {

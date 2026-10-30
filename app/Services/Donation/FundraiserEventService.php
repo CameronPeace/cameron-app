@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Donation;
 
 use App\Repositories\Donation\FundraiserEventRepositoryInterface;
 
